@@ -1,0 +1,156 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+    body {
+        background-color: #F6F1E7;
+        color: #2C241E;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    /* Noise Texture Overlay */
+    .paper-grain {
+        position: relative;
+    }
+    .paper-grain::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+}
+
+@layer components {
+    /* Tactile Hard Shadow & Physical Feedback Buttons */
+    .btn-tactile {
+        @apply inline-flex items-center justify-center font-medium border-[1.5px] border-[#2C241E] transition-all duration-100 select-none;
+        box-shadow: 3px 3px 0px #2C241E;
+    }
+    .btn-tactile:hover:not(:disabled) {
+        transform: translate(-1px, -1px);
+        box-shadow: 4px 4px 0px #2C241E;
+    }
+    .btn-tactile:active:not(:disabled) {
+        transform: translate(2px, 2px);
+        box-shadow: 0px 0px 0px #2C241E;
+    }
+    .btn-tactile:disabled {
+        @apply opacity-60 cursor-not-allowed border-[#6E6259] text-[#6E6259];
+        box-shadow: 2px 2px 0px #6E6259;
+    }
+
+    /* Primary CTA Terracotta */
+    .btn-terracotta {
+        @apply inline-flex items-center justify-center font-medium border-[1.5px] border-[#2C241E] transition-all duration-100 select-none bg-[#D95D39] text-[#FFFDF9] hover:bg-[#C24D2B];
+        box-shadow: 3px 3px 0px #2C241E;
+    }
+    .btn-terracotta:hover:not(:disabled) {
+        transform: translate(-1px, -1px);
+        box-shadow: 4px 4px 0px #2C241E;
+    }
+    .btn-terracotta:active:not(:disabled) {
+        transform: translate(2px, 2px);
+        box-shadow: 0px 0px 0px #2C241E;
+    }
+
+    /* Secondary Cardstock Button */
+    .btn-cardstock {
+        @apply inline-flex items-center justify-center font-medium border-[1.5px] border-[#2C241E] transition-all duration-100 select-none bg-[#FFFDF9] text-[#2C241E] hover:bg-[#F6F1E7];
+        box-shadow: 3px 3px 0px #2C241E;
+    }
+    .btn-cardstock:hover:not(:disabled) {
+        transform: translate(-1px, -1px);
+        box-shadow: 4px 4px 0px #2C241E;
+    }
+    .btn-cardstock:active:not(:disabled) {
+        transform: translate(2px, 2px);
+        box-shadow: 0px 0px 0px #2C241E;
+    }
+
+    /* Sage Pill / Button */
+    .btn-sage {
+        @apply inline-flex items-center justify-center font-medium border-[1.5px] border-[#2C241E] transition-all duration-100 select-none bg-[#3A6B56] text-[#FFFDF9] hover:bg-[#2E5544];
+        box-shadow: 3px 3px 0px #2C241E;
+    }
+    .btn-sage:hover:not(:disabled) {
+        transform: translate(-1px, -1px);
+        box-shadow: 4px 4px 0px #2C241E;
+    }
+    .btn-sage:active:not(:disabled) {
+        transform: translate(2px, 2px);
+        box-shadow: 0px 0px 0px #2C241E;
+    }
+
+    /* Physical Card Base */
+    .surface-card {
+        @apply bg-[#FFFDF9] border-[1.5px] border-[#2C241E] transition-all duration-150;
+        box-shadow: 4px 4px 0px #2C241E;
+    }
+    .surface-card-hover:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0px #2C241E;
+    }
+
+    /* Library Rubber Stamp Badges */
+    .stamp-badge {
+        @apply inline-flex items-center px-2 py-0.5 text-xs font-mono font-bold tracking-wider uppercase border-2 border-dashed;
+        transform: rotate(-2deg);
+        filter: contrast(1.1);
+    }
+    .stamp-tersedia {
+        @apply stamp-badge border-[#3A6B56] text-[#3A6B56] bg-[#EAF2EE]/70;
+    }
+    .stamp-dipinjam {
+        @apply stamp-badge border-[#D95D39] text-[#D95D39] bg-[#FDF0EC]/70;
+        transform: rotate(2deg);
+    }
+    .stamp-antrian {
+        @apply stamp-badge border-[#E09F3E] text-[#E09F3E] bg-[#FDF5E8]/70;
+        transform: rotate(-1.5deg);
+    }
+
+    /* Book Spine Crease Effect */
+    .book-spine {
+        position: relative;
+    }
+    .book-spine::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 12px;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to right, rgba(44, 36, 30, 0.25), rgba(44, 36, 30, 0.05), transparent);
+        pointer-events: none;
+    }
+
+    /* Library Checkout Ruled Card Lines */
+    .library-rules {
+        background-image: repeating-linear-gradient(to bottom, transparent, transparent 35px, #D8CFC0 35px, #D8CFC0 36px);
+    }
+
+    /* Vintage Date Stamp Ink Style */
+    .date-stamp {
+        font-family: 'JetBrains Mono', monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: 2px solid currentColor;
+        padding: 3px 8px;
+        display: inline-block;
+        mask-image: radial-gradient(circle, black 70%, transparent 100%);
+    }
+
+    /* Board Game Track Progress Dots */
+    .game-track-dot {
+        @apply w-7 h-7 rounded-full border-2 border-[#2C241E] flex items-center justify-center font-mono text-xs font-bold transition-all;
+    }
+}
